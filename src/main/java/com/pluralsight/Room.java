@@ -47,7 +47,7 @@ public class Room {
                 ", price=" + price +
                 ", isOccupied=" + isOccupied +
                 ", isDirty=" + isDirty +
-                '}';
+                ", isAvailable=" + isAvailable()+ "}";
     }
 }
 
