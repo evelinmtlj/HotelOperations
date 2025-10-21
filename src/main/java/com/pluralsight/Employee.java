@@ -1,5 +1,9 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 public class Employee {
     private String employeeID;
     private String name;
@@ -74,6 +78,45 @@ public class Employee {
         } else{
             return 0;
         }
+    }
+
+    private double punchInTime = 0;
+
+    public void  punchIn(double time){
+       this.punchInTime = time;
+    }
+
+    public void punchIn(){
+       LocalTime lt = LocalTime.now();
+//       int hours =  lt.getHour();
+//       int minutes = lt.getMinute();
+//       double timeAsDouble = hours + ((double) minutes / 60);
+//
+        this.punchInTime = lt.getHour() + ((double) lt.getMinute() / 60); //this is the simplified version of this
+    }
+
+    public void punchOut(){
+//LocalTime lt  = LocalTime.now();
+       // double punchOutAsDouble = lt.getHour() + ((double) lt.getMinute() / 60);  // this way is easier to read
+      //  this.hoursWorked += (float) (punchOutAsDouble - this.punchInTime);
+        LocalTime lt  = LocalTime.now();
+        this.hoursWorked += ((lt.getHour() + (double) lt.getMinute() / 60) - this.punchInTime); //this is good but takes longer to read not reccomended
+
+
+
+    }
+    public void punchOut(double time){
+     // double elapsedTime = time - this.punchInTime;
+     // this.hoursWorked += elapsedTime;
+
+      this.hoursWorked += time - this.punchInTime; //always best to use th
+    }
+
+    public void punchTimeCard(double checkInTime, double checkOutTime){
+        this.hoursWorked +=((checkInTime - checkOutTime));
+    }
+    public void logHours(float hours){
+        this.hoursWorked += hours;
     }
 
     @Override

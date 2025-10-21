@@ -40,6 +40,37 @@ public class Room {
         //  }
     }
 
+    public void checkIn(){
+
+          this.isDirty = true; //use this so no conflict with local variables
+          this.isOccupied = true;
+    }
+//      if(isAvailable()){
+//          isOccupied = true;
+//          isDirty = true;
+//      } else {
+//          System.out.println("Room is not available");
+//      }
+//    }
+
+    public void checkOut() {
+        this.isOccupied = false;
+//      isOccupied = false;
+//      isDirty = true;
+    }
+    public void cleanRoom(){
+          if(!isOccupied){
+              this.isDirty = false;
+          }
+//     if(isOccupied){
+//         System.out.println("Can't clean");
+//     } else {
+//         isDirty = false;
+//         System.out.println("Clean room");
+//
+//     }
+    }
+
     @Override
     public String toString() {
         return "Room{" +
