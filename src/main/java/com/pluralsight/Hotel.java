@@ -2,79 +2,74 @@ package com.pluralsight;
 
 public class Hotel {
 
-   private String name;
+    private String name;
     private int numberOfSuites;
-    private int numerofBasicRooms;
+    private int numberOfBasicRooms;
     private int bookedSuites;
-    private int  bookedBasicRooms;
-    private int numberOfRooms;
+    private int bookedBasicRooms;
 
-    public int getnumberofRooms() {
-        return numberOfRooms;
+    //constructors
+    public Hotel(String name, int numberOfSuites, int numberOfBasicRooms) {
+        this.name = name;
+        this.numberOfSuites = numberOfSuites;
+        this.numberOfBasicRooms = numberOfBasicRooms;
+        this.bookedSuites = 0;
+        this.bookedBasicRooms = 0;
     }
 
-    public int getNumerofBasicRooms() {
-        return numerofBasicRooms;
+    public Hotel(String name, int numberOfSuites, int numberOfBasicRooms, int bookedSuites, int bookedBasicRooms) {
+        this.name = name;
+        this.numberOfSuites = numberOfSuites;
+        this.numberOfBasicRooms = numberOfBasicRooms;
+        this.bookedSuites = bookedSuites;
+        this.bookedBasicRooms = bookedBasicRooms;
+    }
+//getters
+    public String getName() {
+        return name;
     }
 
     public int getNumberOfSuites() {
         return numberOfSuites;
     }
 
-    public int getBookedBasicRooms() {
-        return bookedBasicRooms;
+    public int getNumberOfBasicRooms() {
+        return numberOfBasicRooms;
     }
 
     public int getBookedSuites() {
         return bookedSuites;
     }
 
-
-    //constructors
-
-    public Hotel(String name, int numberOfSuites, int bookedSuites, int numberOfRooms, int bookedBasicRooms) {
-        this.name = name;
-        this.numberOfSuites = numberOfSuites;
-        this.bookedSuites = bookedSuites;
-        this.numerofBasicRooms = numberOfRooms;
-        this.bookedBasicRooms = bookedBasicRooms;
+    public int getBookedBasicRooms() {
+        return bookedBasicRooms;
     }
 
-    public Hotel(String name,int numberOfSuites, int numerofBasicRooms) {
-        this.name = name;
-        this.numberOfSuites = numberOfSuites;
-        this.numerofBasicRooms = numerofBasicRooms;
-        this.bookedSuites = 0;
-        this.bookedBasicRooms = 0;
-    }
-
-    public String getName() {
-        return name;
-    }
     //methods
-    public boolean bookRoom(int numerofBasicRooms, boolean isSuite) {
-        if (isSuite) {
-            if (numberOfRooms <= getAvailableSuites()) {
-                bookedSuites += numberOfRooms; //check number of rooms
-                return true;
-            } else {
-                return false;
-
-            }  else{
-                if (numberOfRooms <= getNumerofBasicRooms()) {
-                    bookedBasicRooms += numberOfRooms; //number of rooms
-                    return true;
-                }
-            }   else{
-                return false;
-            }
-        }
-    }
-    public int getAvailableSuites(){
+    public int getAvailableSuites(){ //
         return numberOfSuites - bookedSuites;
     }
-    public int getAvailableClassicRooms(){
-        return numerofBasicRooms - bookedBasicRooms;
+    public int getAvailableBasicRooms(){
+        return numberOfBasicRooms - bookedBasicRooms;
+    }
+    public boolean bookRoom(int numberOfRooms, boolean isSuite){
+        if(isSuite){
+            if(numberOfRooms <= getAvailableSuites()){
+                bookedSuites += numberOfRooms;
+                return true;
+            }
+            else{
+                return  false;
+            }
+        }
+        else{
+            if (numberOfRooms <= getNumberOfBasicRooms()){
+                bookedBasicRooms += numberOfRooms;
+                return true;
+            }
+            else {
+                return false;
+            }   }
     }
 
     @Override
@@ -82,11 +77,11 @@ public class Hotel {
         return "Hotel{" +
                 "name='" + name + '\'' +
                 ", numberOfSuites=" + numberOfSuites +
-                ", numerofBasicRooms=" + numerofBasicRooms +
+                ", numberOfBasicRooms=" + numberOfBasicRooms +
                 ", bookedSuites=" + bookedSuites +
                 ", bookedBasicRooms=" + bookedBasicRooms +
-                ", getAvailableSuites()=" + getAvailableSuites()+  // when you use  get use ()
-                ",getAvailableBasicRooms()=" + getAvailableClassicRooms()+  //available basic rooms
+                ", getAvailableSuites()=" + getAvailableSuites() +
+                ", getAvailableBasicRooms()=" + getAvailableBasicRooms() +
                 '}';
     }
 }
